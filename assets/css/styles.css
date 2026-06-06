@@ -1,0 +1,417 @@
+/* ==========================================================================
+   Estilos Globales y Variables
+   ========================================================================== */
+:root {
+    --primary-color: #2b6cb0;
+    /* Azul UTP */
+    --primary-hover: #1a4971;
+    --secondary-color: #4a5568;
+    /* Gris corporativo */
+    --bg-main: #f7fafc;
+    /* Fondo suave */
+    --bg-card: #ffffff;
+    /* Fondo de tarjetas */
+    --text-color: #2d3748;
+    /* Texto oscuro legible */
+    --border-color: #e2e8f0;
+    /* Líneas de división */
+    --success-color: #38a169;
+    /* Mensajes de éxito */
+    --error-color: #e53e3e;
+    /* Alertas y errores */
+    --radius: 8px;
+    /* Esquinas redondeadas */
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-color);
+    line-height: 1.6;
+    padding: 20px;
+}
+
+/* ==========================================================================
+   Enlaces y Navegación (Sin subrayados)
+   ========================================================================== */
+a {
+    text-decoration: none;
+    /* Quita el subrayado de raíz */
+    color: var(--primary-color);
+    transition: color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+}
+
+a:hover {
+    color: var(--primary-hover);
+}
+
+/* Menú Principal Dinámico */
+.menu-navegacion a {
+    display: block;
+    padding: 14px 20px;
+    margin-bottom: 12px;
+    background: #f8fafc;
+    border-radius: var(--radius);
+    border: 1px solid var(--border-color);
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.menu-navegacion a:hover {
+    background: #ebf8ff;
+    border-color: #bee3f8;
+    color: var(--primary-color);
+    transform: translateX(5px);
+}
+
+/* Botón con Personalidad: Volver al Menú Principal */
+.btn-volver,
+a[href*="problema=menu"] {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 28px;
+    margin-top: 25px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #4a5568 !important;
+    background-color: #edf2f7;
+    border: 2px solid #cbd5e0;
+    border-radius: 30px;
+    /* Forma de pastilla perfecta */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.btn-volver:hover,
+a[href*="problema=menu"]:hover {
+    color: #ffffff !important;
+    background-color: #4a5568;
+    border-color: #4a5568;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* ==========================================================================
+   Contenedores Estructurados
+   ========================================================================== */
+.contenedor,
+section {
+    max-width: 850px;
+    margin: 30px auto;
+    background: var(--bg-card);
+    padding: 30px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+}
+
+h1,
+h2,
+h3,
+h4 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+h1 {
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 10px;
+    font-size: 1.8rem;
+}
+
+h2 {
+    font-size: 1.4rem;
+    margin-top: 10px;
+}
+
+p {
+    margin-bottom: 20px;
+    color: var(--secondary-color);
+}
+
+/* ==========================================================================
+   Formularios Modulares e Inputs
+   ========================================================================== */
+form {
+    margin-bottom: 25px;
+}
+
+form div {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+input[type="number"],
+input[type="text"] {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    background-color: #fff;
+    color: var(--text-color);
+    font-size: 1rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(43, 108, 176, 0.15);
+}
+
+/* ==========================================================================
+   Botones de Acción
+   ========================================================================== */
+button,
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    border: none;
+    color: #fff;
+    background-color: var(--primary-color);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+button:hover {
+    background-color: var(--primary-hover);
+}
+
+button:disabled {
+    background-color: var(--border-color);
+    color: #a0aec0;
+    cursor: not-allowed;
+}
+
+/* Variaciones para el panel del Problema 5 */
+button[name="eliminar"] {
+    background-color: #ecc94b;
+    color: #744210;
+}
+
+button[name="eliminar"]:hover {
+    background-color: #dd6b20;
+    color: #fff;
+}
+
+button[name="reiniciar"],
+button[name="btn_reiniciar"] {
+    background-color: #a0aec0;
+}
+
+button[name="reiniciar"]:hover,
+button[name="btn_reiniciar"]:hover {
+    background-color: #718096;
+}
+
+/* ==========================================================================
+   Componentes de Visualización (Tablas y Cajas)
+   ========================================================================== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+}
+
+th,
+td {
+    padding: 12px 15px;
+    text-align: left;
+}
+
+th {
+    background-color: var(--primary-color);
+    color: #ffffff;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+}
+
+tr {
+    border-bottom: 1px solid var(--border-color);
+}
+
+tr:nth-child(even) {
+    background-color: #f8fafc;
+}
+
+tr:hover {
+    background-color: #f1f5f9;
+}
+
+ul {
+    list-style-type: none;
+    margin: 15px 0;
+}
+
+ul li {
+    padding: 8px 12px;
+    background: #f8fafc;
+    border-left: 4px solid var(--primary-color);
+    margin-bottom: 6px;
+    border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+.caja,
+.info {
+    background-color: #f8fafc;
+    padding: 15px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border-color);
+    margin-top: 15px;
+}
+
+/* ==========================================================================
+   Estados y Alertas
+   ========================================================================== */
+div[style*="color: red"],
+.error {
+    background-color: #fff5f5;
+    color: var(--error-color) !important;
+    padding: 12px 16px;
+    border-left: 4px solid var(--error-color);
+    border-radius: var(--radius);
+    margin: 15px 0;
+    font-weight: 500;
+}
+
+/* ==========================================================================
+   Gráficas (Chart.js)
+   ========================================================================== */
+canvas {
+    margin: 25px auto;
+    background: #ffffff;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    display: block;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background: var(--border-color);
+    margin: 25px 0;
+}
+
+/* ==========================================================================
+   Footer Separado, Oscuro y Centrado
+   ========================================================================== */
+footer {
+    margin-top: 60px;
+    padding: 30px 20px;
+    background-color: #1a202c;
+    /* Gris oscuro profundo */
+    color: #a0aec0;
+    /* Gris claro de alto contraste */
+    text-align: center;
+    /* Centrado absoluto */
+    border-top: 4px solid var(--primary-color);
+    /* Línea distintiva UTP */
+    font-size: 0.9rem;
+    border-radius: var(--radius);
+}
+
+footer p {
+    color: #cbd5e0;
+    margin-bottom: 0;
+}
+
+footer a {
+    color: #63b3ed;
+    /* Enlaces celestes en fondo oscuro */
+    font-weight: 600;
+}
+
+footer a:hover {
+    color: #90cdf4;
+}
+
+/* ==========================================================================
+   Ajustes Responsivos
+   ========================================================================== */
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+
+    .contenedor,
+    section {
+        padding: 15px;
+        margin: 15px auto;
+    }
+
+    table,
+    thead,
+    tbody,
+    th,
+    td,
+    tr {
+        display: block;
+    }
+
+    th {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    tr {
+        margin-bottom: 15px;
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius);
+    }
+
+    td {
+        border: none;
+        position: relative;
+        padding-left: 50%;
+        text-align: right;
+        border-bottom: 1px solid #edf2f7;
+    }
+
+    td:last-child {
+        border-bottom: none;
+    }
+}
+p {
+    font-size: 1.05rem;
+    color: #4a5568;
+    /* Un gris oscuro muy legible */
+    margin-bottom: 25px;
+    line-height: 1.7;
+    padding-left: 12px;
+    /* Una sutil línea vertical gris a la izquierda */
+}
+p {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #1a202c;
+    text-align: center;
+    padding: 15px 20px;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
