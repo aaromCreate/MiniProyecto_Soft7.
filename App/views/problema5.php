@@ -13,7 +13,7 @@ $clasificaciones = [];
 $estadisticas = ['Niños' => 0, 'Adolescentes' => 0, 'Adultos' => 0, 'Adultos Mayores' => 0];
 $repetidas = [];
 
-// 1. Acción: AGREGAR EDAD
+//Acción: AGREGAR EDAD
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['agregar'])) {
     $entrada_sucia = $_POST['edad'] ?? '';
     $edad_sanitizada = Utilidades::sanitizarTexto($entrada_sucia);
@@ -31,14 +31,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['agregar'])) {
     }
 }
 
-// 2. Acción: ELIMINAR ÚLTIMA
+// Acción: ELIMINAR ÚLTIMA
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['eliminar'])) {
     if (count($_SESSION['edades_taller']) > 0) {
         array_pop($_SESSION['edades_taller']);
     }
 }
 
-// 3. Acción: REINICIAR TODO
+// Acción: REINICIAR TODO
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['reiniciar'])) {
     $_SESSION['edades_taller'] = [];
     echo '<script>window.location.href="index.php?problema=5";</script>';
@@ -48,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['reiniciar'])) {
 // 4. Acción: PROCESAR ESTADÍSTICAS
 if (isset($_POST['procesar']) && count($_SESSION['edades_taller']) > 0) {
 
-    // Instanciamos tu NUEVO modelo Personas pasando las edades acumuladas
+    // Instanciamos modelo Personas 
     $clasificador = new Personas($_SESSION['edades_taller']);
 
     // Invocamos los métodos de procesamiento OO

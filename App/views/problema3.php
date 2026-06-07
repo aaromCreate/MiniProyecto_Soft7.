@@ -1,22 +1,19 @@
 <?php
-// Inicializamos las variables de control y visualización
 $error = "";
 $procesado = false;
 $lista_multiplos = [];
 $n_valor = "";
 
-// Procesar el formulario cuando se envía por POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    // 1. Sanitizar la entrada usando tu clase Utilidades (utils/Utilidades.php)
+    // Sanitizar la entrada
     $entrada_sucia = $_POST['cantidad_n'] ?? '';
     $n_valor = Utilidades::sanitizarTexto($entrada_sucia);
 
-    // 2. Validar que la entrada sea un número entero válido
+    // Validar que la entrada sea un número entero válido
     if (Utilidades::validarNumero($n_valor) !== false) {
         $n_int = (int) $n_valor;
 
-        // Validación lógica: N debe ser mayor o igual a 1
         if ($n_int >= 1) {
 
             // Control preventivo de usabilidad para evitar colgar el navegador al renderizar la lista
@@ -28,22 +25,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $lista_multiplos = $matematica->generarMultiplosDeCuatro($n_int);
                 $procesado = true;
             } else {
-                $error = "Por cuestiones de rendimiento y para evitar un desbordamiento visual, introduzca un valor de N menor o igual a 2000.";
+                $error = "Por cuestiones de rendimiento y para evitar un desbordamiento visual, introduzca un valor de N menor o igual a 2000";
             }
 
         } else {
-            $error = "El valor de N debe ser un número entero estrictamente positivo (mayor o igual a 1).";
+            $error = "El valor de N debe ser un número entero estrictamente positivo (mayor o igual a 1)";
         }
     } else {
-        $error = "Por favor, introduzca un número entero válido.";
+        $error = "Introduzca un número entero válido.";
     }
 }
 ?>
 
 <section>
     <h2>Problema 3: Múltiplos de 4 y Análisis de Desbordamiento</h2>
-    <p>Desarrolle un script en PHP que imprima los N-primeros múltiplos de 4 (4*1, 4*2, 4*3...) basándose en el límite
-        numérico introducido por teclado.</p>
+    <p>Desarrolle un script en PHP que imprima los N-primeros múltiplos de 4 (4*1, 4*2, 4*3...)
+        basándose en el límite numérico introducido por teclado.</p>
 
     <form action="index.php?problema=3" method="POST">
         <div>
@@ -56,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <?php if ($error !== ""): ?>
         <div>
-            <h3>⚠️ Alerta de Validación:</h3>
+            <h3>Alerta de Validación:</h3>
             <p>
                 <?php echo $error; ?>
             </p>
@@ -81,8 +78,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <div>
                 <h4>Concepto de Desbordamiento (Overflow) en la Aplicación:</h4>
-                <p>
-                    <strong>¿Desbordamiento?:</strong> En entornos de ejecución PHP de 64 bits, el límite máximo para un
+                <p class="desbordamiento">
+                    <strong>¿Desbordamiento?:
+                        <br><br>
+                    </strong> En entornos de ejecución PHP de 64 bits, el límite máximo para un
                     número entero está definido por la constante interna <code>PHP_INT_MAX</code>
                     ($9,223,372,036,854,775,807$).
                     Si la operación matemática multiplicadora excede dicho umbral, PHP mitiga el desbordamiento

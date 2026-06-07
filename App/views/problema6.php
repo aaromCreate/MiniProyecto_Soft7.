@@ -17,7 +17,7 @@ $pedia_valor = "";
 // Procesar cuando el usuario envía el presupuesto por POST
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['calcular'])) {
 
-    // 1. Sanitizar las entradas dinámicas con tu clase de Utilidades
+    //Sanitizar las entradas 
     $gine_sucio = $_POST['ginecologia'] ?? '';
     $trau_sucio = $_POST['traumatologia'] ?? '';
     $pedia_sucio = $_POST['pediatria'] ?? '';
@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['calcular'])) {
     $trau_valor = Utilidades::sanitizarTexto($trau_sucio);
     $pedia_valor = Utilidades::sanitizarTexto($pedia_sucio);
 
-    // 2. Validar que las entradas correspondan a expresiones numéricas
+    // Validar que las entradas correspondan a expresiones numéricas
     if (
         Utilidades::validarNumero($gine_valor) !== false &&
         Utilidades::validarNumero($trau_valor) !== false &&
@@ -37,16 +37,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['calcular'])) {
         $trau_float = (float) $trau_valor;
         $pedia_float = (float) $pedia_valor;
 
-        // Regla lógica: No permitir presupuestos negativos
+        //No permitir presupuestos negativos
         if ($gine_float >= 0 && $trau_float >= 0 && $pedia_float >= 0) {
 
             // Evitar que la sumatoria total sea cero para que no ocurra división entre cero en el modelo
             if (($gine_float + $trau_float + $pedia_float) > 0) {
 
-                // 3. Instanciar tu modelo Hospital activo
+                //Instanciar tu modelo Hospital
                 $hospital = new Hospital($gine_float, $trau_float, $pedia_float);
 
-                // 4. Invocar métodos de negocio
                 $total = $hospital->obtenerTotal();
                 $porGine = $hospital->porcentajeGinecologia();
                 $porTrau = $hospital->porcentajeTraumatologia();
@@ -148,9 +147,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['calcular'])) {
                         labels: ['Ginecología', 'Traumatología', 'Pediatría'],
                         datasets: [{
                             data: [
-                                    <?php echo $gine_float; ?>,
-                                    <?php echo $trau_float; ?>,
-                                    <?php echo $pedia_float; ?>
+                                <?php echo $gine_float; ?>,
+                                <?php echo $trau_float; ?>,
+                                <?php echo $pedia_float; ?>
                             ],
                             backgroundColor: [
                                 'rgba(255, 99, 132, 0.7)',

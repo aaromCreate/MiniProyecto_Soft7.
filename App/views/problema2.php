@@ -1,16 +1,12 @@
 <?php
-// Inicializamos las variables de control
 $procesado = false;
 $resultado_suma = 0;
 
-// Procesar cuando el usuario presione el botón de calcular
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['btn_calcular'])) {
 
-    // Instanciamos la clase Numeros. 
-    // Pasamos un array vacío [] al constructor ya que los métodos del problema 1 no se usarán aquí.
+    // Pasamos un array vacío [] al constructor ya que los métodos del problema 1 no se usarán aqui
     $matematica = new Numeros([]);
 
-    // Invocamos el método que calcula la suma del 1 al 1000
     $resultado_suma = $matematica->calcularSumaHastaMil();
 
     $procesado = true;

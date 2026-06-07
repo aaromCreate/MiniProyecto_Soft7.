@@ -5,13 +5,11 @@ class Numeros
 {
     private $elementos;
 
-    // El constructor recibe el array con los 5 números positivos acumulados
     public function __construct($elementos)
     {
         $this->elementos = $elementos;
     }
 
-    // Calcula la media aritmética (promedio)
     public function calcularMedia()
     {
         if (count($this->elementos) === 0)
@@ -19,7 +17,6 @@ class Numeros
         return array_sum($this->elementos) / count($this->elementos);
     }
 
-    // Calcula la desviación estándar
     public function calcularDesviacionEstandar()
     {
         $totalElementos = count($this->elementos);
@@ -36,7 +33,6 @@ class Numeros
         return sqrt($sumaCuadrados / $totalElementos);
     }
 
-    // Obtiene el número más pequeño del arreglo
     public function obtenerMinimo()
     {
         if (count($this->elementos) === 0)
@@ -44,17 +40,13 @@ class Numeros
         return min($this->elementos);
     }
 
-    // Obtiene el número más grande del arreglo
     public function obtenerMaximo()
     {
         if (count($this->elementos) === 0)
             return 0;
         return max($this->elementos);
     }
-    /**
-     * Problema 2: Calcula la suma de los números del 1 al 1,000
-     * @return int
-     */
+
     public function calcularSumaHastaMil()
     {
         $suma = 0;
@@ -63,18 +55,14 @@ class Numeros
         }
         return $suma;
     }
-    /**
-     * Problema 3: Genera los N primeros múltiplos de 4 y detecta desbordamientos
-     * @param int $cantidad
-     * @return array
-     */
+
     public function generarMultiplosDeCuatro($cantidad)
     {
         $multiplos = [];
         for ($i = 1; $i <= $cantidad; $i++) {
             $resultado = 4 * $i;
 
-            // Evaluar conceptualmente si ocurre desbordamiento (Overflow)
+            //si ocurre desbordamiento (Overflow)
             // Si el resultado pasa a ser un Float o se vuelve infinito/negativo por límite de bits
             if (is_infinite($resultado) || !is_int($resultado) || $resultado < 0) {
                 $multiplos[$i] = "Desbordamiento (Límite superado)";
@@ -85,13 +73,9 @@ class Numeros
         }
         return $multiplos;
     }
-    // Atributos adicionales para el manejo de rangos (Problema 4)
+
     private $inicio;
     private $fin;
-
-    /**
-     * Inicializa un rango dinámico para el Problema 4
-     */
     public function inicializarRango($inicio, $fin)
     {
         $this->inicio = (int) $inicio;

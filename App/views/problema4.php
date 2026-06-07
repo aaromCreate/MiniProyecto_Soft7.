@@ -1,5 +1,4 @@
 <?php
-// Inicializamos variables de control y resultados según la estructura de tu compañero
 $resultado = false;
 $error = "";
 
@@ -14,32 +13,26 @@ $fin_valor = "200";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['calcular'])) {
 
-    // 1. Sanitizar las entradas con tu clase Utilidades
     $inicio_sucio = $_POST['inicio'] ?? '';
     $fin_sucio = $_POST['fin'] ?? '';
 
     $inicio_valor = Utilidades::sanitizarTexto($inicio_sucio);
     $fin_valor = Utilidades::sanitizarTexto($fin_sucio);
 
-    // 2. Validar que las entradas sean números válidos
+    //Validar que las entradas sean números válidos
     if (Utilidades::validarNumero($inicio_valor) !== false && Utilidades::validarNumero($fin_valor) !== false) {
 
         $inicio_int = (int) $inicio_valor;
         $fin_int = (int) $fin_valor;
 
-        // Regla de validación de tu compañero
         if ($inicio_int >= $fin_int) {
             $error = "El número inicial debe ser menor que el número final.";
         } else {
 
-            // 3. Instanciar tu modelo unificado Numeros
-            // Pasamos un array vacío ya que los métodos del problema 1 no se usan aquí
             $numeros = new Numeros([]);
 
-            // Inicializamos el rango dinámico utilizando el nuevo método
             $numeros->inicializarRango($inicio_int, $fin_int);
 
-            // 4. Invocar los métodos lógicos que empatan perfectamente
             $sumaPares = $numeros->sumarPares();
             $sumaImpares = $numeros->sumarImpares();
             $pares = $numeros->obtenerPares();

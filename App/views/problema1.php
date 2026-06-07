@@ -23,15 +23,14 @@ if (isset($_POST['btn_reiniciar'])) {
 // Procesar cuando el usuario envía un número
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['btn_enviar'])) {
 
-    // 1. Sanitizar la entrada usando tu clase Utilidades (utils/Utilidades.php)
+    // Sanitizar la entrada 
     $entrada_sucia = $_POST['numero_ingresado'] ?? '';
     $numero_sanitizado = Utilidades::sanitizarTexto($entrada_sucia);
 
-    // 2. Validar que sea un número válido
+    // Validar que sea un número válido
     if (Utilidades::validarNumero($numero_sanitizado) !== false) {
         $numero_float = (float) $numero_sanitizado;
 
-        // Regla del problema: Debe ser estrictamente positivo (mayor que 0)
         if ($numero_float > 0) {
 
             // Si aún faltan números, lo guardamos en la sesión
@@ -89,8 +88,7 @@ if ($conteo_actual === 5) {
 
         <form action="index.php?problema=1" method="POST">
             <div>
-                <label for="numero_ingresado">Número Positivo (#
-                    <?php echo ($conteo_actual + 1); ?>):
+                <label for="numero_ingresado">Número Positivo (#<?php echo ($conteo_actual + 1); ?>):
                 </label>
                 <input type="number" step="0.0001" id="numero_ingresado" name="numero_ingresado" required autofocus>
             </div>
@@ -100,13 +98,13 @@ if ($conteo_actual === 5) {
                 <button type="submit" name="btn_reiniciar" formnovalidate>Reiniciar</button>
             <?php endif; ?>
         </form>
+
+
     <?php endif; ?>
 
     <?php if ($mensaje_registro !== "" && !$procesado): ?>
         <div>
-            <p>✅
-                <?php echo $mensaje_registro; ?>
-            </p>
+            <p>✅<?php echo $mensaje_registro; ?></p>
         </div>
     <?php endif; ?>
 
@@ -121,7 +119,7 @@ if ($conteo_actual === 5) {
 
     <?php if ($procesado): ?>
         <div>
-            <h3>📊 Resultados Estadísticos:</h3>
+            <h3>📊Resultados Estadísticos:</h3>
             <p><strong>Conjunto de datos analizado:</strong> [
                 <?php echo implode(', ', $datos_analizados); ?>]
             </p>
