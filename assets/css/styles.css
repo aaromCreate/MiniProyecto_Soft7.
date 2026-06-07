@@ -139,11 +139,129 @@ p {
     color: var(--secondary-color);
 }
 
+.resultado-estacion {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.resultado-estacion img {
+    width: 400px;
+    max-width: 100%;
+    border-radius: 10px;
+}
+
+.resultado-estacion p {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.resultado-estacion h3 {
+    margin-bottom: 15px;
+}
+
+.estadisticas-container {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.estadisticas-grid {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.estadistica-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 20px;
+    min-width: 180px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transition: transform 0.2s ease;
+}
+
+.estadistica-card:hover {
+    transform: translateY(-5px);
+}
+
+.estadistica-card h4 {
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.estadistica-card span {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.estacion-card {
+    width: 500px;
+    padding: 25px;
+    border-radius: 12px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    text-align: center;
+}
+
+.resultado-estacion {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.controles-estacion {
+    display: flex;
+    align-items: center;
+    gap: 35px;
+}
+
 /* ==========================================================================
    Formularios Modulares e Inputs
    ========================================================================== */
 form {
     margin-bottom: 25px;
+}
+
+.formulario-estacion {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.formulario-estadisticas {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.formulario-estadisticas form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.formulario-notas {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.formulario-notas form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.campo-nota {
+    margin-bottom: 20px;
+}
+
+.campo-nota label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
 }
 
 form div {
@@ -169,10 +287,26 @@ input[type="text"] {
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
+
 input:focus {
     outline: none;
     border-color: var(--primary-color);
     box-shadow: 0 0 0 3px rgba(43, 108, 176, 0.15);
+}
+
+.formulario-estadisticas label {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.formulario-estadisticas input {
+    width: 200px;
+    padding: 8px;
+}
+
+.campo-nota input {
+    width: 220px;
+    padding: 8px;
 }
 
 /* ==========================================================================
@@ -222,6 +356,19 @@ button[name="btn_reiniciar"] {
 button[name="reiniciar"]:hover,
 button[name="btn_reiniciar"]:hover {
     background-color: #718096;
+}
+
+.formulario-estadisticas button,
+button[name="calcular"]{
+    margin-top: 25px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.formulario-notas button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
 }
 
 /* ==========================================================================
