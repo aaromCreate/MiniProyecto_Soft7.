@@ -15,8 +15,10 @@ $titulo_pestana = isset($titulo_pagina) ? htmlspecialchars($titulo_pagina) : "Mi
 
 <body>
     <header>
-        <h1>Mini Proyecto #2</h1>
-        <p>Estructuras de Control y Clases en PHP</p>
+        <div class="header-sistema">
+            <h1>Estructuras de Control y Clases en PHP</h1>
+            <p>Mini Proyecto #1 - Desarrollo Web VII</p>
+        </div>
     </header>
 
     <main class="container">

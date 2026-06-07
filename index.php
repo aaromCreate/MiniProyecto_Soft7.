@@ -15,7 +15,7 @@ $problema = $_GET['problema'] ?? 'menu';
 if ($problema === 'menu') {
     $titulo_pagina = "Menú Principal";
 } else {
-    $titulo_pagina = "Resolviendo Problema #" . $problema;
+    $titulo_pagina = "Problema #" . $problema;
 }
 
 // 3. Cargamos el encabezado común

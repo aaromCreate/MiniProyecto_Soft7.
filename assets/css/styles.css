@@ -1,26 +1,17 @@
 /* ==========================================================================
-   Estilos Globales y Variables
+   Variables Globales y Reset
    ========================================================================== */
 :root {
     --primary-color: #2b6cb0;
-    /* Azul UTP */
     --primary-hover: #1a4971;
     --secondary-color: #4a5568;
-    /* Gris corporativo */
     --bg-main: #f7fafc;
-    /* Fondo suave */
     --bg-card: #ffffff;
-    /* Fondo de tarjetas */
     --text-color: #2d3748;
-    /* Texto oscuro legible */
     --border-color: #e2e8f0;
-    /* Líneas de división */
     --success-color: #38a169;
-    /* Mensajes de éxito */
     --error-color: #e53e3e;
-    /* Alertas y errores */
     --radius: 8px;
-    /* Esquinas redondeadas */
     --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
@@ -35,15 +26,10 @@ body {
     background-color: var(--bg-main);
     color: var(--text-color);
     line-height: 1.6;
-    padding: 20px;
 }
 
-/* ==========================================================================
-   Enlaces y Navegación (Sin subrayados)
-   ========================================================================== */
 a {
     text-decoration: none;
-    /* Quita el subrayado de raíz */
     color: var(--primary-color);
     transition: color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
 }
@@ -52,26 +38,89 @@ a:hover {
     color: var(--primary-hover);
 }
 
-/* Menú Principal Dinámico */
-.menu-navegacion a {
-    display: block;
-    padding: 14px 20px;
-    margin-bottom: 12px;
-    background: #f8fafc;
-    border-radius: var(--radius);
+/* ==========================================================================
+   Menú Principal (Dashboard)
+   ========================================================================== */
+.menu-principal {
+    max-width: 850px;
+    margin: 40px auto;
+    padding: 40px;
+    background: var(--bg-card);
     border: 1px solid var(--border-color);
-    font-weight: 500;
-    color: var(--text-color);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+    text-align: center;
 }
 
-.menu-navegacion a:hover {
-    background: #ebf8ff;
-    border-color: #bee3f8;
+.menu-principal h2 {
     color: var(--primary-color);
-    transform: translateX(5px);
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    border: none;
+    padding: 0;
 }
 
-/* Botón con Personalidad: Volver al Menú Principal */
+.menu-principal p {
+    color: var(--secondary-color);
+    font-size: 1.1rem;
+    font-weight: 500;
+    text-align: center;
+    padding: 0;
+    margin-bottom: 35px;
+}
+
+.menu-principal ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 18px;
+}
+
+.menu-principal ul li {
+    padding: 0;
+    margin: 0;
+    background: transparent;
+    border-left: none !important;
+    /* Anula herencia de barra lateral en el menú */
+    border-radius: 0;
+}
+
+.menu-principal ul li a {
+    display: block;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 24px 16px;
+    color: var(--text-color);
+    font-size: 1.15rem;
+    font-weight: 600;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.01);
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1),
+        background-color 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.menu-principal ul li a:hover {
+    background-color: rgba(43, 108, 176, 0.05);
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(43, 108, 176, 0.12);
+}
+
+.menu-principal ul li a:active {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(43, 108, 176, 0.06);
+}
+
+/* ==========================================================================
+   Botón Volver
+   ========================================================================== */
 .btn-volver,
 a[href*="problema=menu"] {
     display: inline-flex;
@@ -87,7 +136,6 @@ a[href*="problema=menu"] {
     background-color: #edf2f7;
     border: 2px solid #cbd5e0;
     border-radius: 30px;
-    /* Forma de pastilla perfecta */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
 
@@ -99,9 +147,32 @@ a[href*="problema=menu"]:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
 }
+/* ==========================================================================
+   Encabezado del Sistema (Centrado)
+   ========================================================================== */
+.header-sistema {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.header-sistema h1 {
+    color: var(--primary-color);
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.header-sistema p {
+    color: var(--secondary-color);
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin: 0 auto;
+    max-width: 600px;
+    /* Evita que el texto se estire demasiado en pantallas grandes */
+}
 
 /* ==========================================================================
-   Contenedores Estructurados
+   Contenedores Estructurados y Bloques
    ========================================================================== */
 .contenedor,
 section {
@@ -139,9 +210,16 @@ p {
     color: var(--secondary-color);
 }
 
+.desbordamiento {
+    text-align: justify;
+}
+
+/* Componentes de problemas específicos */
 .resultado-estacion {
     text-align: center;
     margin-top: 20px;
+    display: flex;
+    justify-content: center;
 }
 
 .resultado-estacion img {
@@ -177,7 +255,7 @@ p {
     border-radius: 12px;
     padding: 20px;
     min-width: 180px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     transition: transform 0.2s ease;
 }
 
@@ -205,12 +283,6 @@ p {
     text-align: center;
 }
 
-.resultado-estacion {
-    display: flex;
-    justify-content: center;
-    margin-top: 30px;
-}
-
 .controles-estacion {
     display: flex;
     align-items: center;
@@ -218,40 +290,29 @@ p {
 }
 
 /* ==========================================================================
-   Formularios Modulares e Inputs
+   Formularios e Inputs
    ========================================================================== */
 form {
     margin-bottom: 25px;
 }
 
-.formulario-estacion {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    margin-top: 20px;
-}
-
-.formulario-estadisticas {
-    text-align: center;
-    margin-top: 20px;
-}
-
-.formulario-estadisticas form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.formulario-notas {
-    text-align: center;
-    margin-top: 30px;
-}
-
+.formulario-estacion,
+.formulario-estadisticas form,
 .formulario-notas form {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.formulario-estacion,
+.formulario-estadisticas,
+.formulario-notas {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.formulario-notas {
+    margin-top: 30px;
 }
 
 .campo-nota {
@@ -286,7 +347,6 @@ input[type="text"] {
     font-size: 1rem;
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
-
 
 input:focus {
     outline: none;
@@ -337,7 +397,6 @@ button:disabled {
     cursor: not-allowed;
 }
 
-/* Variaciones para el panel del Problema 5 */
 button[name="eliminar"] {
     background-color: #ecc94b;
     color: #744210;
@@ -359,20 +418,20 @@ button[name="btn_reiniciar"]:hover {
 }
 
 .formulario-estadisticas button,
-button[name="calcular"]{
-    margin-top: 25px;
-    padding: 10px 20px;
-    cursor: pointer;
-}
-
+button[name="calcular"],
 .formulario-notas button {
     margin-top: 20px;
     padding: 10px 20px;
     cursor: pointer;
 }
 
+.formulario-estadisticas button,
+button[name="calcular"] {
+    margin-top: 25px;
+}
+
 /* ==========================================================================
-   Componentes de Visualización (Tablas y Cajas)
+   Componentes de Tabla, Listas y Cajas Informativas
    ========================================================================== */
 table {
     width: 100%;
@@ -432,7 +491,7 @@ ul li {
 }
 
 /* ==========================================================================
-   Estados y Alertas
+   Estados, Alertas y Gráficos
    ========================================================================== */
 div[style*="color: red"],
 .error {
@@ -445,9 +504,6 @@ div[style*="color: red"],
     font-weight: 500;
 }
 
-/* ==========================================================================
-   Gráficas (Chart.js)
-   ========================================================================== */
 canvas {
     margin: 25px auto;
     background: #ffffff;
@@ -465,19 +521,15 @@ hr {
 }
 
 /* ==========================================================================
-   Footer Separado, Oscuro y Centrado
+   Footer
    ========================================================================== */
 footer {
     margin-top: 60px;
     padding: 30px 20px;
     background-color: #1a202c;
-    /* Gris oscuro profundo */
     color: #a0aec0;
-    /* Gris claro de alto contraste */
     text-align: center;
-    /* Centrado absoluto */
     border-top: 4px solid var(--primary-color);
-    /* Línea distintiva UTP */
     font-size: 0.9rem;
     border-radius: var(--radius);
 }
@@ -489,7 +541,6 @@ footer p {
 
 footer a {
     color: #63b3ed;
-    /* Enlaces celestes en fondo oscuro */
     font-weight: 600;
 }
 
@@ -498,7 +549,7 @@ footer a:hover {
 }
 
 /* ==========================================================================
-   Ajustes Responsivos
+   Media Queries (Responsivo)
    ========================================================================== */
 @media (max-width: 600px) {
     body {
@@ -543,25 +594,4 @@ footer a:hover {
     td:last-child {
         border-bottom: none;
     }
-}
-p {
-    font-size: 1.05rem;
-    color: #4a5568;
-    /* Un gris oscuro muy legible */
-    margin-bottom: 25px;
-    line-height: 1.7;
-    padding-left: 12px;
-    /* Una sutil línea vertical gris a la izquierda */
-}
-p {
-    font-size: 1.1rem;
-    font-weight: 500;
-    color: #1a202c;
-    text-align: center;
-    padding: 15px 20px;
-    margin-bottom: 30px;
-    line-height: 1.6;
-}
-.desbordamiento{
-    text-align: justify;
 }
