@@ -1,8 +1,6 @@
 <?php
 
-// Se carga el modelo encargado de generar las potencias
-// del número ingresado por el usuario.
-require_once __DIR__ . '/../models/Potencias.php';
+
 
 // Variables para almacenar los resultados generados
 // y posibles mensajes de error.
@@ -10,18 +8,14 @@ $resultados = [];
 $error = '';
 
 // Verifica que la solicitud haya sido enviada mediante POST.
-if($_SERVER['REQUEST_METHOD'] === 'POST')
-{
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Valida que el valor ingresado sea un número válido.
     $numero = Utilidades::validarNumero($_POST['numero']);
 
     // Comprueba que el número se encuentre dentro del rango permitido.
-    if($numero === false || $numero < 1 || $numero > 9)
-    {
+    if ($numero === false || $numero < 1 || $numero > 9) {
         $error = "Debe ingresar un número entre 1 y 9.";
-    }
-    else
-    {
+    } else {
         // Genera las primeras 15 potencias del número ingresado.
         $resultados = Potencias::generar($numero);
     }
@@ -40,13 +34,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST')
 
             <label>Número (1-9)</label>
 
-            <input
-                type="number"
-                min="1"
-                max="9"
-                name="numero"
-                required
-            >
+            <input type="number" min="1" max="9" name="numero" required>
 
             <button type="submit">
                 Generar
@@ -55,45 +43,45 @@ if($_SERVER['REQUEST_METHOD'] === 'POST')
         </form>
 
         <!-- Muestra un mensaje de error si la validación falla -->
-        <?php if($error): ?>
+        <?php if ($error): ?>
 
-        <p>
-            <?= Utilidades::sanitizarTexto($error) ?>
-        </p>
+            <p>
+                <?= Utilidades::sanitizarTexto($error) ?>
+            </p>
 
         <?php endif; ?>
 
         <!-- Muestra la tabla de resultados cuando existen potencias generadas -->
-        <?php if(!empty($resultados)): ?>
+        <?php if (!empty($resultados)): ?>
 
-        <table border="1">
+            <table border="1">
 
-            <!-- Encabezados de la tabla -->
-            <tr>
-                <th>Potencia</th>
-                <th>Resultado</th>
-            </tr>
+                <!-- Encabezados de la tabla -->
+                <tr>
+                    <th>Potencia</th>
+                    <th>Resultado</th>
+                </tr>
 
-            <!-- Recorre el arreglo de potencias para mostrarlas -->
-            <?php foreach($resultados as $fila): ?>
+                <!-- Recorre el arreglo de potencias para mostrarlas -->
+                <?php foreach ($resultados as $fila): ?>
 
-            <tr>
+                    <tr>
 
-                <!-- Muestra la operación realizada -->
-                <td>
-                    <?= $numero . '^' . $fila['exponente'] ?>
-                </td>
+                        <!-- Muestra la operación realizada -->
+                        <td>
+                            <?= $numero . '^' . $fila['exponente'] ?>
+                        </td>
 
-                <!-- Muestra el resultado de la potencia -->
-                <td>
-                    <?= $fila['resultado'] ?>
-                </td>
+                        <!-- Muestra el resultado de la potencia -->
+                        <td>
+                            <?= $fila['resultado'] ?>
+                        </td>
 
-            </tr>
+                    </tr>
 
-            <?php endforeach; ?>
+                <?php endforeach; ?>
 
-        </table>
+            </table>
 
         <?php endif; ?>
 

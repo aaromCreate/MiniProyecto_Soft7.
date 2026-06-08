@@ -1,28 +1,28 @@
 <?php
 $error = "";
 $procesado = false;
-$lista_multiplos = [];
-$n_valor = "";
+$listaMultiplos = [];
+$nValor = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Sanitizar la entrada
-    $entrada_sucia = $_POST['cantidad_n'] ?? '';
-    $n_valor = Utilidades::sanitizarTexto($entrada_sucia);
+    $entradaSucia = $_POST['cantidadN'] ?? '';
+    $nValor = Utilidades::sanitizarTexto($entradaSucia);
 
     // Validar que la entrada sea un número entero válido
-    if (Utilidades::validarNumero($n_valor) !== false) {
-        $n_int = (int) $n_valor;
+    if (Utilidades::validarNumero($nValor) !== false) {
+        $nInt = (int) $nValor;
 
-        if ($n_int >= 1) {
+        if ($nInt >= 1) {
 
             // Control preventivo de usabilidad para evitar colgar el navegador al renderizar la lista
-            if ($n_int <= 2000) {
+            if ($nInt <= 2000) {
                 // 3. Instanciar el objeto de negocio (enviamos un array vacío ya que no usaremos los métodos del problema 1)
                 $matematica = new Numeros([]);
 
                 // 4. Invocar el método que genera los múltiplos
-                $lista_multiplos = $matematica->generarMultiplosDeCuatro($n_int);
+                $listaMultiplos = $matematica->generarMultiplosDeCuatro($nInt);
                 $procesado = true;
             } else {
                 $error = "Por cuestiones de rendimiento y para evitar un desbordamiento visual, introduzca un valor de N menor o igual a 2000";
@@ -45,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <form action="index.php?problema=3" method="POST">
         <div>
             <label for="cantidad_n">Cantidad de múltiplos a generar (N):</label>
-            <input type="number" id="cantidad_n" name="cantidad_n" value="<?php echo $n_valor; ?>" min="1" required>
+            <input type="number" id="cantidadN" name="cantidadN" value="<?php echo $nValor; ?>" min="1" required>
         </div>
 
         <button type="submit">Generar Secuencia</button>
@@ -63,11 +63,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <?php if ($procesado): ?>
         <div>
             <h3>📊 Tabla de Multiplicación Generada (N =
-                <?php echo $n_int; ?>):
+                <?php echo $nInt; ?>):
             </h3>
 
             <ul>
-                <?php foreach ($lista_multiplos as $multiplicador => $resultado): ?>
+                <?php foreach ($listaMultiplos as $multiplicador => $resultado): ?>
                     <li>4 ×
                         <?php echo $multiplicador; ?> = <strong>
                             <?php echo $resultado; ?>

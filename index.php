@@ -8,6 +8,7 @@ require_once 'App/models/Personas.php';
 require_once 'App/models/Hospital.php';
 require_once 'App/models/Estadisticas.php';
 require_once 'App/models/Potencias.php';
+require_once 'App/models/EstacionAnio.php';
 // 1. Capturamos el problema de la URL de forma segura (si no hay, por defecto es 'menu')
 $problema = $_GET['problema'] ?? 'menu';
 

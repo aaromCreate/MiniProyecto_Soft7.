@@ -1,9 +1,5 @@
 <?php
 
-// Se carga el modelo encargado de determinar la estación del año
-// según la fecha seleccionada por el usuario.
-require_once __DIR__ . '/../models/EstacionAnio.php';
-
 // Variables para almacenar la fecha ingresada y el resultado obtenido.
 $fechaSeleccionada = '';
 $resultado = null;
@@ -39,11 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <!-- Agrupa el control de fecha y el botón -->
             <div class="controles-estacion">
 
-                <input
-                    type="date"
-                    name="fecha"
-                    required
-                >
+                <input type="date" name="fecha" required>
 
                 <button type="submit">
                     Consultar
@@ -58,38 +50,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <!-- Muestra el resultado únicamente cuando existe una estación calculada -->
     <?php if ($resultado): ?>
 
-    <div class="resultado-estacion">
+        <div class="resultado-estacion">
 
-        <!-- Tarjeta que contiene la información de la estación -->
-        <div class="estacion-card">
+            <!-- Tarjeta que contiene la información de la estación -->
+            <div class="estacion-card">
 
-            <h3>Resultado</h3>
+                <h3>Resultado</h3>
 
-            <!-- Muestra la fecha ingresada por el usuario -->
-            <p>
-                <strong>Fecha ingresada:</strong>
+                <!-- Muestra la fecha ingresada por el usuario -->
+                <p>
+                    <strong>Fecha ingresada:</strong>
 
-                <?= htmlspecialchars(
-                    date('d/m/Y', strtotime($fechaSeleccionada))
-                ) ?>
-            </p>
+                    <?= htmlspecialchars(
+                        date('d/m/Y', strtotime($fechaSeleccionada))
+                    ) ?>
+                </p>
 
-            <!-- Muestra el nombre de la estación obtenida -->
-            <p>
-                <strong>Estación:</strong>
+                <!-- Muestra el nombre de la estación obtenida -->
+                <p>
+                    <strong>Estación:</strong>
 
-                <?= htmlspecialchars($resultado['nombre']) ?>
-            </p>
+                    <?= htmlspecialchars($resultado['nombre']) ?>
+                </p>
 
-            <!-- Muestra una imagen representativa de la estación -->
-            <img
-                src="assets/<?= htmlspecialchars($resultado['imagen']) ?>"
-                alt="<?= htmlspecialchars($resultado['nombre']) ?>"
-            >
+                <!-- Muestra una imagen representativa de la estación -->
+                <img src="assets/<?= htmlspecialchars($resultado['imagen']) ?>"
+                    alt="<?= htmlspecialchars($resultado['nombre']) ?>">
+
+            </div>
 
         </div>
-
-    </div>
 
     <?php endif; ?>
 

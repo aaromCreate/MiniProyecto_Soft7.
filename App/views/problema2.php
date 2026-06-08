@@ -1,13 +1,13 @@
 <?php
 $procesado = false;
-$resultado_suma = 0;
+$resultadoSuma = 0;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['btn_calcular'])) {
 
     // Pasamos un array vacío [] al constructor ya que los métodos del problema 1 no se usarán aqui
     $matematica = new Numeros([]);
 
-    $resultado_suma = $matematica->calcularSumaHastaMil();
+    $resultadoSuma = $matematica->calcularSumaHastaMil();
 
     $procesado = true;
 }
@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['btn_calcular'])) {
             <h3>📊 Resultado del Cálculo:</h3>
             <p>La sumatoria acumulada de los números del <strong>1 al 1,000</strong> es:</p>
             <p><strong>Resultado:</strong>
-                <?php echo number_format($resultado_suma); ?>
+                <?php echo number_format($resultadoSuma); ?>
             </p>
 
             <div>
